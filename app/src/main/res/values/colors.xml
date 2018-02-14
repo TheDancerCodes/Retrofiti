@@ -3,4 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="viewBg">#F1F5F8</color>
+    <color name="movie_title">#4C4C4C</color>
+    <color name="white">#FFF</color>
 </resources>
