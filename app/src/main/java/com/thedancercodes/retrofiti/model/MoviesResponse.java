@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MovieResponse {
+public class MoviesResponse {
 
     @SerializedName("page")
     @Expose
