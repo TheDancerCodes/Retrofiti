@@ -86,12 +86,12 @@ public class Movie {
         this.voteAverage = voteAverage;
     }
 
-    // TODO: Image URL Variable
-    String baseImageUrl = "https://image.tmdb.org/t/p/w500";
+    // TODO: Image URL Field
+    private final String IMAGE_URL = "https://image.tmdb.org/t/p/w500";
 
-    // TODO: Append Image URL Variable
+    // TODO: Append Image URL Field
     public String getPosterPath() {
-        return baseImageUrl + posterPath;
+        return IMAGE_URL + posterPath;
     }
 
     public void setPosterPath(String posterPath) {
