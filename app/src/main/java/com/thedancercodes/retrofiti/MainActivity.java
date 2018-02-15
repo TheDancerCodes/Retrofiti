@@ -11,13 +11,21 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.thedancercodes.retrofiti.adapter.MoviesAdapter;
+import com.thedancercodes.retrofiti.api.Client;
+import com.thedancercodes.retrofiti.api.Service;
 import com.thedancercodes.retrofiti.model.Movie;
+import com.thedancercodes.retrofiti.model.MoviesResponse;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -87,6 +95,47 @@ public class MainActivity extends AppCompatActivity {
 
     // This method is responsible for loading JSON data.
     private void loadJSON() {
+
+        try {
+            if (BuildConfig.THE_MOVIE_DB_API_KEY.isEmpty()) {
+                Toast.makeText(getApplicationContext(), "Please obtain API Key from themoviedb.org", Toast.LENGTH_SHORT).show();
+                pd.dismiss();
+                return;
+            }
+
+            // Instantiate the Retrofit client
+            Client client = new Client();
+
+            // Create the Service
+            Service apiService =
+                    client.getClient().create(Service.class);
+
+            Call<MoviesResponse> call = apiService.getPopularMovies(BuildConfig.THE_MOVIE_DB_API_KEY);
+            call.enqueue(new Callback<MoviesResponse>() {
+                @Override
+                public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
+                    List<Movie> movies = response.body().getResults();
+                    mRecyclerView.setAdapter(new MoviesAdapter(getApplicationContext(), movies));
+                    mRecyclerView.smoothScrollToPosition(0);
+
+                    if (swipeContainer.isRefreshing()) {
+                        swipeContainer.setRefreshing(false);
+                    }
+
+                    pd.dismiss();
+                }
+
+                @Override
+                public void onFailure(Call<MoviesResponse> call, Throwable t) {
+
+                    Log.d(LOG_TAG, "onFailure: " + t.getMessage());
+                    Toast.makeText(MainActivity.this, "Error Fetching Data!", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } catch (Exception e) {
+            Log.d(LOG_TAG, "loadJSON: " + e.getMessage());
+            Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+        }
 
     }
 
