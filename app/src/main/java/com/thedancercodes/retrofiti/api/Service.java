@@ -12,7 +12,7 @@ import retrofit2.http.Query;
 
 public interface Service {
 
-    //TODO 3b: Define API Service
+    //TODO 4b: Define API Service
 
     @GET("movie/popular/")
     Call<MoviesResponse> getPopularMovies(@Query("api_key") String apiKey);

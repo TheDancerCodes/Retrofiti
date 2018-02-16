@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.thedancercodes.retrofiti">
 
+    <!--TODO 2: Set Internet Permission-->
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
@@ -19,7 +20,7 @@
             </intent-filter>
         </activity>
 
-        <!--TODO: Add Detail Activity-->
+        <!--TODO 7: Add Detail Activity-->
         <activity android:name=".DetailActivity"
                   android:label="Movies"
                   android:theme="@style/AppTheme.NoActionBar"

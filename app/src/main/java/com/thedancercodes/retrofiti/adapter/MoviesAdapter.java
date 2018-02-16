@@ -43,6 +43,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHold
         return new MyViewHolder(view);
     }
 
+    // TODO 5b: Implement onBindViewHolder
     @Override
     public void onBindViewHolder(final MoviesAdapter.MyViewHolder holder, int position) {
         holder.title.setText(mMovieList.get(position).getOriginalTitle());
@@ -63,6 +64,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHold
         return mMovieList.size();
     }
 
+    // TODO 5a: Implement MyViewHolder
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         public TextView title, userrating;

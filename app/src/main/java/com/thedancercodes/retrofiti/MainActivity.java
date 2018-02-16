@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return null;
     }
-
+    // TODO 6a: initViews() Method
     // This method is responsible for initializing the views.
     private void initViews() {
         pd = new ProgressDialog(this);
@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
         loadJSON();
     }
 
+    // TODO 6b: loadJSON() Method
     // This method is responsible for loading JSON data.
     private void loadJSON() {
 
@@ -107,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
             Client client = new Client();
 
             // Create the Service
+            // Use the Retrofit Object to generate an instance of the interface.
             Service apiService =
                     client.getClient().create(Service.class);
 

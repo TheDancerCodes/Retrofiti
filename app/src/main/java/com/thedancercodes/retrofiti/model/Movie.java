@@ -67,7 +67,7 @@ public class Movie {
     private Double voteAverage;
 
 
-    // TODO: Add a Movie Constructor
+    // TODO 3a: Add a Movie Constructor
     public Movie(String posterPath, boolean adult, String overview, String releaseDate,
                  List<Integer> genreIds, int id, String originalTitle, String originalLanguage, String title, String backdropPath, double popularity, int voteCount, boolean video, double voteAverage) {
         this.posterPath = posterPath;
@@ -86,10 +86,10 @@ public class Movie {
         this.voteAverage = voteAverage;
     }
 
-    // TODO: Image URL Field
+    // TODO 3b: Add an Image URL Field
     private final String IMAGE_URL = "https://image.tmdb.org/t/p/w500";
 
-    // TODO: Append Image URL Field
+    // TODO 3c: Append Image URL Field
     public String getPosterPath() {
         return IMAGE_URL + posterPath;
     }
