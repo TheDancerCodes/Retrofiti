@@ -16,7 +16,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    // buildConfigField to enable usage of API KEY dynamically inside a Class
+    applicationVariants.all { variant ->
+        variant.buildConfigField "String", "THE_MOVIE_DB_API_KEY", "\""+getApiKey()+"\""
+    }
 }
+
+    // Function to access the API Key
+    def getApiKey(){
+        def Properties props = new Properties()
+        props.load(new FileInputStream(new File('secrets.properties')))
+        return props['THE_MOVIE_DB_API_KEY']
+    }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
